@@ -1,0 +1,57 @@
+# Full Name: Harshita Chegondi | Student ID: 1002115738
+
+# Evaluation Function for Red-Blue Nim
+
+#> Overview
+The evaluation function is a critical component of the MinMax algorithm with Alpha-Beta
+pruning implemented in the Red-Blue Nim game. It assesses the desirability of a game
+state from the perspective of the AI (computer player), helping it to make decisions
+that maximize its chances of winning according to the rules and strategies specific to
+the standard and misère versions of the game.
+
+#> Function Design
+The evaluation function calculates a score based on the current state of the game,
+considering the number of red and blue marbles left. The scoring logic is designed to
+reflect the strategic goals of the two game versions:
+
+- Standard Version: The objective for the AI is to force the opponent (human player) to
+                    take the last marble. Therefore, game states that lead the game closer
+                    to this condition without actually causing the AI to lose are rated
+                    more highly. The score is calculated as the negative sum of 2 times the
+                    number of red marbles plus 3 times the number of blue marbles, encouraging
+                    the AI to reduce the number of marbles in a way that aligns with winning
+                    strategies for Nim.
+  
+- Misère Version: The goal is inverted; the AI aims to avoid taking the last marble. In this
+                  case, the scoring favors game states that leave an even distribution of marbles,
+                  making it harder for the game to end quickly and increasing the chances that the
+                  human player will be forced into a losing move. The score is, therefore, the
+                  positive sum of 2 times the number of red marbles plus 3 times the number of blue
+                  marbles, encouraging the preservation of marbles when possible.
+
+#> Strategic Considerations
+
+The evaluation function incorporates several key strategic considerations:
+
+1. Priority of Marble Colors: The different values assigned to red and blue marbles (2 and 3,
+                              respectively) take into account the varying points lost or gained when
+                              they are left in the game at the end. This differential scoring helps
+                              the AI prioritize which marbles to target for removal based on their
+                              impact on the game's outcome.
+
+2. Adaptability to Game Version: By adjusting the sign of the score based on the game version, the
+                                 function remains flexible, allowing the AI's strategy to adapt
+                                 dynamically to the conditions for winning or losing specific to each
+                                 version.
+
+3. Depth Awareness: Although the basic evaluation function does not directly incorporate depth, the
+                    design allows for easy integration with a depth-limited search strategy. This
+                    future enhancement would enable the AI to consider not just the immediate but
+                    also future implications of moves, further refining its strategy.
+
+# Conclusion
+
+The evaluation function is designed to guide the AI in making decisions that enhance its chances of
+winning according to the nuanced objectives of the Red-Blue Nim game's two versions. By carefully
+considering the game state and aligning the scoring with strategic goals, the function plays a pivotal
+role in enabling the AI to compete effectively against human players.
